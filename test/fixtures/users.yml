@@ -1,0 +1,43 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  image: MyString
+  name: MyString
+  address: MyString
+  born_address: MyString
+  job_type: MyString
+  workat: MyString
+  job_description: MyText
+  facebook_url: MyText
+  owned_media: MyText
+  vision: MyText
+  join_purpose: MyText
+  give_free: MyText
+  give_cost: MyText
+  trouble: MyText
+  needs: MyText
+  thinking: MyText
+  recent_news: MyText
+  perspective_talent: MyText
+  life_carrier: MyText
+
+two:
+  image: MyString
+  name: MyString
+  address: MyString
+  born_address: MyString
+  job_type: MyString
+  workat: MyString
+  job_description: MyText
+  facebook_url: MyText
+  owned_media: MyText
+  vision: MyText
+  join_purpose: MyText
+  give_free: MyText
+  give_cost: MyText
+  trouble: MyText
+  needs: MyText
+  thinking: MyText
+  recent_news: MyText
+  perspective_talent: MyText
+  life_carrier: MyText

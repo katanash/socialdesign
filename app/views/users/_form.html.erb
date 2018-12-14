@@ -1,0 +1,112 @@
+<%= form_with(model: user, local: true) do |form| %>
+  <% if user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :image %>
+    <%= form.file_field :image %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_field :address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :born_address %>
+    <%= form.text_field :born_address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :job_type %>
+    <%= form.text_field :job_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :workat %>
+    <%= form.text_field :workat %>
+  </div>
+
+  <div class="field">
+    <%= form.label :job_description %>
+    <%= form.text_area :job_description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :facebook_url %>
+    <%= form.text_area :facebook_url %>
+  </div>
+
+  <div class="field">
+    <%= form.label :owned_media %>
+    <%= form.text_area :owned_media %>
+  </div>
+
+  <div class="field">
+    <%= form.label :vision %>
+    <%= form.text_area :vision %>
+  </div>
+
+  <div class="field">
+    <%= form.label :join_purpose %>
+    <%= form.text_area :join_purpose %>
+  </div>
+
+  <div class="field">
+    <%= form.label :give_free %>
+    <%= form.text_area :give_free %>
+  </div>
+
+  <div class="field">
+    <%= form.label :give_cost %>
+    <%= form.text_area :give_cost %>
+  </div>
+
+  <div class="field">
+    <%= form.label :trouble %>
+    <%= form.text_area :trouble %>
+  </div>
+
+  <div class="field">
+    <%= form.label :needs %>
+    <%= form.text_area :needs %>
+  </div>
+
+  <div class="field">
+    <%= form.label :thinking %>
+    <%= form.text_area :thinking %>
+  </div>
+
+  <div class="field">
+    <%= form.label :recent_news %>
+    <%= form.text_area :recent_news %>
+  </div>
+
+  <div class="field">
+    <%= form.label :perspective_talent %>
+    <%= form.text_area :perspective_talent %>
+  </div>
+
+  <div class="field">
+    <%= form.label :life_carrier %>
+    <%= form.text_area :life_carrier %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
