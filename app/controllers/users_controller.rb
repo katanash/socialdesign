@@ -7,6 +7,12 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+ # GET /users
+  # GET /users.json
+  def members
+    @user = User.new(params[:id])
+  end
+
   # GET /users/1
   # GET /users/1.json
   def show

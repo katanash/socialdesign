@@ -1,29 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Users</h1>
+<h1>メンバー一覧</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Image</th>
-      <th>Name</th>
-      <th>Address</th>
-      <th>Born address</th>
-      <th>Job type</th>
-      <th>Workat</th>
-      <th>Job description</th>
-      <th>Facebook url</th>
-      <th>Owned media</th>
-      <th>Vision</th>
-      <th>Join purpose</th>
-      <th>Give free</th>
-      <th>Give cost</th>
-      <th>Trouble</th>
-      <th>Needs</th>
-      <th>Thinking</th>
-      <th>Recent news</th>
-      <th>Perspective talent</th>
-      <th>Life carrier</th>
+      <th>写真</th>
+      <th>お名前</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -33,26 +16,9 @@
       <tr>
         <td><%= user.image %></td>
         <td><%= user.name %></td>
-        <td><%= user.address %></td>
-        <td><%= user.born_address %></td>
-        <td><%= user.job_type %></td>
-        <td><%= user.workat %></td>
-        <td><%= user.job_description %></td>
-        <td><%= user.facebook_url %></td>
-        <td><%= user.owned_media %></td>
-        <td><%= user.vision %></td>
-        <td><%= user.join_purpose %></td>
-        <td><%= user.give_free %></td>
-        <td><%= user.give_cost %></td>
-        <td><%= user.trouble %></td>
-        <td><%= user.needs %></td>
-        <td><%= user.thinking %></td>
-        <td><%= user.recent_news %></td>
-        <td><%= user.perspective_talent %></td>
-        <td><%= user.life_carrier %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '表示する', user %></td>
+        <td><%= link_to '編集する', edit_user_path(user) %></td>
+        <td><%= link_to '削除', user, method: :delete, data: { confirm: 'よろしいですか?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -60,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New User', new_user_path %>
+<%= link_to '新規登録はこちら', new_user_path %>

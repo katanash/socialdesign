@@ -12,27 +12,28 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :image %>
-    <%= form.file_field :image %>
-  </div>
+    <%= form.label '画像' %>
+    <%= form.file_field :image, id: :post_image %>
+    <%= form.hidden_field :image_cache %>
+</div>
 
   <div class="field">
-    <%= form.label :name %>
+    <%= form.label '名前' %>
     <%= form.text_field :name %>
   </div>
 
   <div class="field">
-    <%= form.label :address %>
+    <%= form.label '居住地' %>
     <%= form.text_field :address %>
   </div>
 
   <div class="field">
-    <%= form.label :born_address %>
+    <%= form.label '出身地' %>
     <%= form.text_field :born_address %>
   </div>
 
   <div class="field">
-    <%= form.label :job_type %>
+    <%= form.label '職種' %>
     <%= form.text_field :job_type %>
   </div>
 

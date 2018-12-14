@@ -1,3 +1,3 @@
 class User < ApplicationRecord
-mount_uploader :picture, PictureUploader
+mount_uploader :image, PictureUploader
 end
