@@ -76,6 +76,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
+    commonjs (0.2.7)
     concurrent-ruby (1.1.3)
     crass (1.0.4)
     erubi (1.7.1)
@@ -89,6 +90,14 @@ GEM
     jbuilder (2.8.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
+    less (2.6.0)
+      commonjs (~> 0.2.7)
+    less-rails (2.8.0)
+      actionpack (>= 4.0)
+      less (~> 2.6.0)
+      sprockets (> 2, < 4)
+      tilt
+    libv8 (3.16.14.19)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -138,6 +147,11 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.0.4)
       loofah (~> 2.2, >= 2.2.2)
+    rails_12factor (0.0.3)
+      rails_serve_static_assets
+      rails_stdout_logging
+    rails_serve_static_assets (0.0.5)
+    rails_stdout_logging (0.0.5)
     railties (5.2.2)
       actionpack (= 5.2.2)
       activesupport (= 5.2.2)
@@ -148,6 +162,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
+    ref (2.0.0)
     regexp_parser (1.3.0)
     ruby_dep (1.5.0)
     rubyzip (1.2.2)
@@ -178,12 +193,20 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     sqlite3 (1.3.13)
+    therubyracer (0.12.3)
+      libv8 (~> 3.16.14.15)
+      ref
     thor (0.20.3)
     thread_safe (0.3.6)
     tilt (2.0.9)
     turbolinks (5.2.0)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
+    twitter-bootstrap-rails (4.0.0)
+      actionpack (~> 5.0, >= 5.0.1)
+      execjs (~> 2.7)
+      less-rails (~> 2.8, >= 2.8.0)
+      railties (~> 5.0, >= 5.0.1)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
     uglifier (4.1.20)
@@ -209,18 +232,23 @@ DEPENDENCIES
   carrierwave
   chromedriver-helper
   coffee-rails (~> 4.2)
+  execjs
   jbuilder (~> 2.5)
+  less-rails
   listen (>= 3.0.5, < 3.2)
   mini_magick
   pg
   puma (~> 3.11)
   rails (~> 5.2.1)
+  rails_12factor
   sass-rails (~> 5.0)
   selenium-webdriver
   spring
   spring-watcher-listen (~> 2.0.0)
   sqlite3
+  therubyracer
   turbolinks (~> 5)
+  twitter-bootstrap-rails
   tzinfo-data
   uglifier (>= 1.3.0)
   web-console (>= 3.3.0)

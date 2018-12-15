@@ -1,113 +1,160 @@
-<%= form_with(model: user, local: true) do |form| %>
-  <% if user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+<%= form_for @user, :html => { :class => "form-horizontal user" } do |f| %>
 
-      <ul>
-      <% user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  <% if @user.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label '画像' %>
-    <%= form.file_field :image, id: :post_image %>
-    <%= form.hidden_field :image_cache %>
-</div>
-
-  <div class="field">
-    <%= form.label '名前' %>
-    <%= form.text_field :name %>
+  <div class="form-group">
+    <%= f.label :image, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :image, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:image) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :name, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :name, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:name) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :address, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :address, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:address) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :born_address, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :born_address, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:born_address) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :job_type, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :job_type, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:job_type) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :workat, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :workat, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:workat) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :job_description, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :job_description, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:job_description) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :facebook_url, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :facebook_url, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:facebook_url) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :owned_media, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :owned_media, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:owned_media) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :vision, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :vision, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:vision) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :join_purpose, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :join_purpose, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:join_purpose) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :give_free, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :give_free, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:give_free) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :give_cost, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :give_cost, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:give_cost) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :trouble, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :trouble, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:trouble) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :needs, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :needs, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:needs) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :thinking, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :thinking, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:thinking) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :recent_news, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :recent_news, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:recent_news) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :perspective_talent, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :perspective_talent, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:perspective_talent) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :life_carrier, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :life_carrier, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:life_carrier) %>
   </div>
 
-  <div class="field">
-    <%= form.label '居住地' %>
-    <%= form.text_field :address %>
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                users_path, :class => 'btn btn-default' %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label '出身地' %>
-    <%= form.text_field :born_address %>
-  </div>
-
-  <div class="field">
-    <%= form.label '職種' %>
-    <%= form.text_field :job_type %>
-  </div>
-
-  <div class="field">
-    <%= form.label :workat %>
-    <%= form.text_field :workat %>
-  </div>
-
-  <div class="field">
-    <%= form.label :job_description %>
-    <%= form.text_area :job_description %>
-  </div>
-
-  <div class="field">
-    <%= form.label :facebook_url %>
-    <%= form.text_area :facebook_url %>
-  </div>
-
-  <div class="field">
-    <%= form.label :owned_media %>
-    <%= form.text_area :owned_media %>
-  </div>
-
-  <div class="field">
-    <%= form.label :vision %>
-    <%= form.text_area :vision %>
-  </div>
-
-  <div class="field">
-    <%= form.label :join_purpose %>
-    <%= form.text_area :join_purpose %>
-  </div>
-
-  <div class="field">
-    <%= form.label :give_free %>
-    <%= form.text_area :give_free %>
-  </div>
-
-  <div class="field">
-    <%= form.label :give_cost %>
-    <%= form.text_area :give_cost %>
-  </div>
-
-  <div class="field">
-    <%= form.label :trouble %>
-    <%= form.text_area :trouble %>
-  </div>
-
-  <div class="field">
-    <%= form.label :needs %>
-    <%= form.text_area :needs %>
-  </div>
-
-  <div class="field">
-    <%= form.label :thinking %>
-    <%= form.text_area :thinking %>
-  </div>
-
-  <div class="field">
-    <%= form.label :recent_news %>
-    <%= form.text_area :recent_news %>
-  </div>
-
-  <div class="field">
-    <%= form.label :perspective_talent %>
-    <%= form.text_area :perspective_talent %>
-  </div>
-
-  <div class="field">
-    <%= form.label :life_carrier %>
-    <%= form.text_area :life_carrier %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>

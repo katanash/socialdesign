@@ -1,99 +1,55 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = User -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
 
-<p>
-    <strong>Image:</strong>
-    <%= image_tag @user.image_url %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:image) %>:</strong></dt>
+  <dd><%= @user.image %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+  <dd><%= @user.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:address) %>:</strong></dt>
+  <dd><%= @user.address %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:born_address) %>:</strong></dt>
+  <dd><%= @user.born_address %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:job_type) %>:</strong></dt>
+  <dd><%= @user.job_type %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:workat) %>:</strong></dt>
+  <dd><%= @user.workat %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:job_description) %>:</strong></dt>
+  <dd><%= @user.job_description %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:facebook_url) %>:</strong></dt>
+  <dd><%= @user.facebook_url %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:owned_media) %>:</strong></dt>
+  <dd><%= @user.owned_media %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:vision) %>:</strong></dt>
+  <dd><%= @user.vision %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:join_purpose) %>:</strong></dt>
+  <dd><%= @user.join_purpose %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:give_free) %>:</strong></dt>
+  <dd><%= @user.give_free %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:give_cost) %>:</strong></dt>
+  <dd><%= @user.give_cost %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:trouble) %>:</strong></dt>
+  <dd><%= @user.trouble %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:needs) %>:</strong></dt>
+  <dd><%= @user.needs %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:thinking) %>:</strong></dt>
+  <dd><%= @user.thinking %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:recent_news) %>:</strong></dt>
+  <dd><%= @user.recent_news %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:perspective_talent) %>:</strong></dt>
+  <dd><%= @user.perspective_talent %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:life_carrier) %>:</strong></dt>
+  <dd><%= @user.life_carrier %></dd>
+</dl>
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @user.address %>
-</p>
-
-<p>
-  <strong>Born address:</strong>
-  <%= @user.born_address %>
-</p>
-
-<p>
-  <strong>Job type:</strong>
-  <%= @user.job_type %>
-</p>
-
-<p>
-  <strong>Workat:</strong>
-  <%= @user.workat %>
-</p>
-
-<p>
-  <strong>Job description:</strong>
-  <%= @user.job_description %>
-</p>
-
-<p>
-  <strong>Facebook url:</strong>
-  <%= @user.facebook_url %>
-</p>
-
-<p>
-  <strong>Owned media:</strong>
-  <%= @user.owned_media %>
-</p>
-
-<p>
-  <strong>Vision:</strong>
-  <%= @user.vision %>
-</p>
-
-<p>
-  <strong>Join purpose:</strong>
-  <%= @user.join_purpose %>
-</p>
-
-<p>
-  <strong>Give free:</strong>
-  <%= @user.give_free %>
-</p>
-
-<p>
-  <strong>Give cost:</strong>
-  <%= @user.give_cost %>
-</p>
-
-<p>
-  <strong>Trouble:</strong>
-  <%= @user.trouble %>
-</p>
-
-<p>
-  <strong>Needs:</strong>
-  <%= @user.needs %>
-</p>
-
-<p>
-  <strong>Thinking:</strong>
-  <%= @user.thinking %>
-</p>
-
-<p>
-  <strong>Recent news:</strong>
-  <%= @user.recent_news %>
-</p>
-
-<p>
-  <strong>Perspective talent:</strong>
-  <%= @user.perspective_talent %>
-</p>
-
-<p>
-  <strong>Life carrier:</strong>
-  <%= @user.life_carrier %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              users_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_user_path(@user), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              user_path(@user),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
