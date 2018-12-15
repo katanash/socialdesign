@@ -15,146 +15,153 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= f.label :image, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :image, :class => 'form-control' %>
-    </div>
-    <%=f.error_span(:image) %>
-  </div>
-  <div class="form-group">
-    <%= f.label :name, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
+     <div class="main">
+
+        <section class="signup">
+            <!-- <img src="images/signup-bg.jpg" alt=""> -->
+            <div class="container">
+                <div class="signup-content">
+                    <form method="POST" id="signup-form" class="signup-form">
+                        <h2 class="form-title">新規登録フォーム</h2>
+                          <div class="form-group">
+    <%= f.label 'お名前', :class => 'control-label col-lg-6' %>
+    <div class="col-lg-3">
       <%= f.text_field :name, :class => 'form-control' %>
     </div>
     <%=f.error_span(:name) %>
   </div>
   <div class="form-group">
-    <%= f.label :address, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
+    <%= f.label '居住地(都道府県+市町村くらいまで)', :class => 'control-label col-lg-6' %>
+    <div class="col-lg-6">
       <%= f.text_field :address, :class => 'form-control' %>
     </div>
     <%=f.error_span(:address) %>
   </div>
   <div class="form-group">
-    <%= f.label :born_address, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
+    <%= f.label '出身地', :class => 'control-label col-lg-6' %>
+    <div class="col-lg-6">
       <%= f.text_field :born_address, :class => 'form-control' %>
     </div>
     <%=f.error_span(:born_address) %>
   </div>
   <div class="form-group">
-    <%= f.label :job_type, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
+    <%= f.label '職種', :class => 'control-label col-lg-6' %>
+    <div class="col-lg-6">
       <%= f.text_field :job_type, :class => 'form-control' %>
     </div>
     <%=f.error_span(:job_type) %>
   </div>
   <div class="form-group">
-    <%= f.label :workat, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
+    <%= f.label '所属', :class => 'control-label col-lg-6' %>
+    <div class="col-lg-6">
       <%= f.text_field :workat, :class => 'form-control' %>
     </div>
     <%=f.error_span(:workat) %>
   </div>
   <div class="form-group">
-    <%= f.label :job_description, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
+    <%= f.label '仕事の詳細', :class => 'control-label col-lg-6' %>
+    <div class="col-lg-6">
       <%= f.text_field :job_description, :class => 'form-control' %>
     </div>
     <%=f.error_span(:job_description) %>
   </div>
   <div class="form-group">
-    <%= f.label :facebook_url, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
+    <%= f.label 'Facebook（URL）', :class => 'control-label col-lg-6' %>
+    <div class="col-lg-6">
       <%= f.text_field :facebook_url, :class => 'form-control' %>
     </div>
     <%=f.error_span(:facebook_url) %>
   </div>
   <div class="form-group">
-    <%= f.label :owned_media, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
+    <%= f.label '運用しているメディア', :class => 'control-label col-lg-6' %>
+    <div class="col-lg-6">
       <%= f.text_field :owned_media, :class => 'form-control' %>
     </div>
     <%=f.error_span(:owned_media) %>
   </div>
   <div class="form-group">
-    <%= f.label :vision, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
+    <%= f.label 'ビジョン/夢', :class => 'control-label col-lg-6' %>
+    <div class="col-lg-6">
       <%= f.text_field :vision, :class => 'form-control' %>
     </div>
     <%=f.error_span(:vision) %>
   </div>
   <div class="form-group">
-    <%= f.label :join_purpose, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
+    <%= f.label 'なぜこのサロンに入会したのか', :class => 'control-label col-lg-6' %>
+    <div class="col-lg-6">
       <%= f.text_field :join_purpose, :class => 'form-control' %>
     </div>
     <%=f.error_span(:join_purpose) %>
   </div>
   <div class="form-group">
-    <%= f.label :give_free, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
+    <%= f.label '無料で提供できるもの(あれば)', :class => 'control-label col-lg-6' %>
+    <div class="col-lg-6">
       <%= f.text_field :give_free, :class => 'form-control' %>
     </div>
     <%=f.error_span(:give_free) %>
   </div>
   <div class="form-group">
-    <%= f.label :give_cost, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
+    <%= f.label '有料で提供できるもの', :class => 'control-label col-lg-6' %>
+    <div class="col-lg-6">
       <%= f.text_field :give_cost, :class => 'form-control' %>
     </div>
     <%=f.error_span(:give_cost) %>
   </div>
   <div class="form-group">
-    <%= f.label :trouble, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
+    <%= f.label '困っていることや悩んでいること', :class => 'control-label col-lg-6' %>
+    <div class="col-lg-6">
       <%= f.text_field :trouble, :class => 'form-control' %>
     </div>
     <%=f.error_span(:trouble) %>
   </div>
   <div class="form-group">
-    <%= f.label :needs, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
+    <%= f.label 'サロンメンバーに応援して欲しいこと', :class => 'control-label col-lg-6' %>
+    <div class="col-lg-6">
       <%= f.text_field :needs, :class => 'form-control' %>
     </div>
     <%=f.error_span(:needs) %>
   </div>
   <div class="form-group">
-    <%= f.label :thinking, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
+    <%= f.label 'ここしばらくずっと考えていること', :class => 'control-label col-lg-6' %>
+    <div class="col-lg-6">
       <%= f.text_field :thinking, :class => 'form-control' %>
     </div>
     <%=f.error_span(:thinking) %>
   </div>
   <div class="form-group">
-    <%= f.label :recent_news, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
+    <%= f.label '最近嬉しかったこと', :class => 'control-label col-lg-6' %>
+    <div class="col-lg-6">
       <%= f.text_field :recent_news, :class => 'form-control' %>
     </div>
     <%=f.error_span(:recent_news) %>
   </div>
   <div class="form-group">
-    <%= f.label :perspective_talent, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
+    <%= f.label 'サロンメンバーから見た、この人のタレント', :class => 'control-label col-lg-6' %>
+    <div class="col-lg-6">
       <%= f.text_field :perspective_talent, :class => 'form-control' %>
     </div>
     <%=f.error_span(:perspective_talent) %>
   </div>
   <div class="form-group">
-    <%= f.label :life_carrier, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
+    <%= f.label '100年キャリア時代の生涯職業', :class => 'control-label col-lg-6' %>
+    <div class="col-lg-6">
       <%= f.text_field :life_carrier, :class => 'form-control' %>
     </div>
     <%=f.error_span(:life_carrier) %>
   </div>
 
+
   <div class="form-group">
-    <div class="col-lg-offset-2 col-lg-10">
-      <%= f.submit nil, :class => 'btn btn-primary' %>
-      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                users_path, :class => 'btn btn-default' %>
+    <div class="col-lg-offset-2 col-lg-6">
+      <%= f.submit '新規登録(ようこそSDSへ！)', :class => 'form-submit' %>
     </div>
   </div>
+                      
+                </div>
+            </div>
+        </section>
+
+    </div>
+
 
 <% end %>
