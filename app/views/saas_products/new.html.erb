@@ -1,0 +1,16 @@
+<div class="container mt-4">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><%= link_to 'SaaS Products', saas_products_path %></li>
+      <li class="breadcrumb-item active" aria-current="page">New Product</li>
+    </ol>
+  </nav>
+
+  <h1>Add New SaaS Product</h1>
+
+  <div class="card mt-4">
+    <div class="card-body">
+      <%= render 'form', saas_product: @saas_product %>
+    </div>
+  </div>
+</div>

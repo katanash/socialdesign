@@ -1,0 +1,111 @@
+<%= form_with(model: saas_product, local: true) do |form| %>
+  <% if saas_product.errors.any? %>
+    <div class="alert alert-danger">
+      <h4><%= pluralize(saas_product.errors.count, "error") %> prohibited this product from being saved:</h4>
+      <ul>
+        <% saas_product.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h4>Basic Information</h4>
+
+      <div class="form-group">
+        <%= form.label :name %>
+        <%= form.text_field :name, class: 'form-control', required: true %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :category %>
+        <%= form.select :category, SaasProduct::CATEGORIES, { include_blank: 'Select Category' }, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :description %>
+        <%= form.text_area :description, class: 'form-control', rows: 4 %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :target_users, 'Target Users' %>
+        <%= form.text_field :target_users, class: 'form-control', placeholder: 'e.g., Small businesses, Startups, Enterprise' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :website_url, 'Website URL' %>
+        <%= form.url_field :website_url, class: 'form-control', placeholder: 'https://example.com' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :logo_url, 'Logo URL' %>
+        <%= form.url_field :logo_url, class: 'form-control', placeholder: 'https://example.com/logo.png' %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <h4>Pricing</h4>
+
+      <div class="form-group">
+        <%= form.label :price_monthly, 'Monthly Price ($)' %>
+        <%= form.number_field :price_monthly, class: 'form-control', step: '0.01', min: '0' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :price_yearly, 'Yearly Price ($)' %>
+        <%= form.number_field :price_yearly, class: 'form-control', step: '0.01', min: '0' %>
+      </div>
+
+      <div class="form-group">
+        <div class="form-check">
+          <%= form.check_box :free_plan, class: 'form-check-input' %>
+          <%= form.label :free_plan, 'Free Plan Available', class: 'form-check-label' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :trial_days, 'Trial Period (days)' %>
+        <%= form.number_field :trial_days, class: 'form-control', min: '0' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :rating, 'Rating (0-5)' %>
+        <%= form.number_field :rating, class: 'form-control', step: '0.1', min: '0', max: '5' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-md-12">
+      <h4>Features & Reviews</h4>
+    </div>
+
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= form.label :features, 'Key Features (one per line)' %>
+        <%= form.text_area :features, class: 'form-control', rows: 5, placeholder: "Feature 1\nFeature 2\nFeature 3" %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.label :pros, 'Pros (one per line)' %>
+        <%= form.text_area :pros, class: 'form-control', rows: 4, placeholder: "Easy to use\nAffordable pricing" %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.label :cons, 'Cons (one per line)' %>
+        <%= form.text_area :cons, class: 'form-control', rows: 4, placeholder: "Limited integrations\nSteep learning curve" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group mt-4">
+    <%= form.submit class: 'btn btn-primary' %>
+    <%= link_to 'Cancel', saas_products_path, class: 'btn btn-secondary' %>
+  </div>
+<% end %>

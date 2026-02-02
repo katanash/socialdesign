@@ -1,0 +1,154 @@
+<div class="container mt-4">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><%= link_to 'SaaS Products', saas_products_path %></li>
+      <li class="breadcrumb-item active" aria-current="page"><%= @saas_product.name %></li>
+    </ol>
+  </nav>
+
+  <div class="row">
+    <div class="col-md-8">
+      <div class="card mb-4">
+        <div class="card-body">
+          <div class="d-flex align-items-center mb-4">
+            <% if @saas_product.logo_url.present? %>
+              <img src="<%= @saas_product.logo_url %>" alt="<%= @saas_product.name %>"
+                   style="max-height: 80px; max-width: 120px;" class="mr-3">
+            <% else %>
+              <div class="bg-light p-3 rounded mr-3">
+                <h2 class="mb-0"><%= @saas_product.name.first(2).upcase %></h2>
+              </div>
+            <% end %>
+            <div>
+              <h1 class="mb-1"><%= @saas_product.name %></h1>
+              <span class="badge badge-secondary"><%= @saas_product.category %></span>
+              <% if @saas_product.rating.present? %>
+                <span class="badge badge-primary ml-2">Rating: <%= @saas_product.rating %> / 5</span>
+              <% end %>
+            </div>
+          </div>
+
+          <% if @saas_product.description.present? %>
+            <h4>Description</h4>
+            <p><%= simple_format(@saas_product.description) %></p>
+          <% end %>
+
+          <% if @saas_product.features.present? %>
+            <h4>Features</h4>
+            <ul class="list-group mb-3">
+              <% @saas_product.features_list.each do |feature| %>
+                <li class="list-group-item"><%= feature %></li>
+              <% end %>
+            </ul>
+          <% end %>
+
+          <div class="row">
+            <% if @saas_product.pros.present? %>
+              <div class="col-md-6">
+                <h4 class="text-success">Pros</h4>
+                <ul class="list-unstyled">
+                  <% @saas_product.pros_list.each do |pro| %>
+                    <li class="mb-2"><span class="text-success mr-2">+</span><%= pro %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+            <% if @saas_product.cons.present? %>
+              <div class="col-md-6">
+                <h4 class="text-danger">Cons</h4>
+                <ul class="list-unstyled">
+                  <% @saas_product.cons_list.each do |con| %>
+                    <li class="mb-2"><span class="text-danger mr-2">-</span><%= con %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+          </div>
+
+          <% if @saas_product.target_users.present? %>
+            <h4>Target Users</h4>
+            <p><%= @saas_product.target_users %></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <!-- Pricing Card -->
+      <div class="card mb-4">
+        <div class="card-header">
+          <h5 class="mb-0">Pricing</h5>
+        </div>
+        <div class="card-body">
+          <% if @saas_product.free_plan? %>
+            <div class="alert alert-success">
+              <strong>Free Plan Available!</strong>
+            </div>
+          <% end %>
+
+          <% if @saas_product.price_monthly.present? %>
+            <div class="mb-3">
+              <span class="text-muted">Monthly:</span>
+              <h3 class="d-inline ml-2">$<%= @saas_product.price_monthly %></h3>
+              <small class="text-muted">/month</small>
+            </div>
+          <% end %>
+
+          <% if @saas_product.price_yearly.present? %>
+            <div class="mb-3">
+              <span class="text-muted">Yearly:</span>
+              <h4 class="d-inline ml-2">$<%= @saas_product.price_yearly %></h4>
+              <small class="text-muted">/year</small>
+              <% if @saas_product.price_monthly.present? %>
+                <br>
+                <small class="text-success">
+                  Save <%= number_to_percentage((1 - (@saas_product.price_yearly / (@saas_product.price_monthly * 12))) * 100, precision: 0) %>
+                </small>
+              <% end %>
+            </div>
+          <% end %>
+
+          <% if @saas_product.trial_days.present? && @saas_product.trial_days > 0 %>
+            <div class="alert alert-info">
+              <strong><%= @saas_product.trial_days %> days</strong> free trial available
+            </div>
+          <% end %>
+
+          <% if @saas_product.website_url.present? %>
+            <%= link_to 'Visit Website', @saas_product.website_url,
+                class: 'btn btn-primary btn-block', target: '_blank', rel: 'noopener' %>
+          <% end %>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <%= link_to 'Edit', edit_saas_product_path(@saas_product), class: 'btn btn-outline-secondary btn-block' %>
+          <%= link_to 'Delete', @saas_product, method: :delete, data: { confirm: 'Are you sure?' },
+              class: 'btn btn-outline-danger btn-block' %>
+          <%= link_to 'Back to List', saas_products_path, class: 'btn btn-outline-primary btn-block' %>
+        </div>
+      </div>
+
+      <!-- Similar Products -->
+      <% if @similar_products.any? %>
+        <div class="card">
+          <div class="card-header">
+            <h5 class="mb-0">Similar Products</h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            <% @similar_products.each do |product| %>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <%= link_to product.name, product %>
+                <% if product.rating.present? %>
+                  <span class="badge badge-primary"><%= product.rating %></span>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

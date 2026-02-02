@@ -1,0 +1,239 @@
+<div class="container-fluid mt-4">
+  <div class="row mb-4">
+    <div class="col">
+      <h1>Compare SaaS Products</h1>
+      <p class="text-muted">Select products to compare side by side</p>
+    </div>
+    <div class="col-auto">
+      <%= link_to 'Back to List', saas_products_path, class: 'btn btn-outline-primary' %>
+    </div>
+  </div>
+
+  <% if @comparison_products.any? %>
+    <!-- Comparison Table -->
+    <div class="card mb-4">
+      <div class="card-header">
+        <h4 class="mb-0">Comparison (<%= @comparison_products.count %> products)</h4>
+      </div>
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <table class="table table-bordered mb-0">
+            <thead class="thead-light">
+              <tr>
+                <th style="width: 150px;">Attribute</th>
+                <% @comparison_products.each do |product| %>
+                  <th class="text-center">
+                    <% if product.logo_url.present? %>
+                      <img src="<%= product.logo_url %>" alt="<%= product.name %>"
+                           style="max-height: 40px; max-width: 80px;" class="mb-2"><br>
+                    <% end %>
+                    <%= link_to product.name, product %>
+                    <button type="button" class="btn btn-sm btn-outline-danger ml-2 remove-compare"
+                            data-product-id="<%= product.id %>">
+                      &times;
+                    </button>
+                  </th>
+                <% end %>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Category</strong></td>
+                <% @comparison_products.each do |product| %>
+                  <td class="text-center">
+                    <span class="badge badge-secondary"><%= product.category %></span>
+                  </td>
+                <% end %>
+              </tr>
+              <tr>
+                <td><strong>Rating</strong></td>
+                <% @comparison_products.each do |product| %>
+                  <td class="text-center">
+                    <% if product.rating.present? %>
+                      <span class="badge badge-primary"><%= product.rating %> / 5</span>
+                    <% else %>
+                      <span class="text-muted">N/A</span>
+                    <% end %>
+                  </td>
+                <% end %>
+              </tr>
+              <tr>
+                <td><strong>Monthly Price</strong></td>
+                <% @comparison_products.each do |product| %>
+                  <td class="text-center">
+                    <% if product.price_monthly.present? %>
+                      <strong>$<%= product.price_monthly %></strong>/mo
+                    <% else %>
+                      <span class="text-muted">Contact</span>
+                    <% end %>
+                  </td>
+                <% end %>
+              </tr>
+              <tr>
+                <td><strong>Yearly Price</strong></td>
+                <% @comparison_products.each do |product| %>
+                  <td class="text-center">
+                    <% if product.price_yearly.present? %>
+                      <strong>$<%= product.price_yearly %></strong>/yr
+                    <% else %>
+                      <span class="text-muted">N/A</span>
+                    <% end %>
+                  </td>
+                <% end %>
+              </tr>
+              <tr>
+                <td><strong>Free Plan</strong></td>
+                <% @comparison_products.each do |product| %>
+                  <td class="text-center">
+                    <% if product.free_plan? %>
+                      <span class="badge badge-success">Yes</span>
+                    <% else %>
+                      <span class="badge badge-secondary">No</span>
+                    <% end %>
+                  </td>
+                <% end %>
+              </tr>
+              <tr>
+                <td><strong>Trial Period</strong></td>
+                <% @comparison_products.each do |product| %>
+                  <td class="text-center">
+                    <% if product.trial_days.present? && product.trial_days > 0 %>
+                      <span class="badge badge-info"><%= product.trial_days %> days</span>
+                    <% else %>
+                      <span class="text-muted">None</span>
+                    <% end %>
+                  </td>
+                <% end %>
+              </tr>
+              <tr>
+                <td><strong>Target Users</strong></td>
+                <% @comparison_products.each do |product| %>
+                  <td class="text-center"><%= product.target_users || '-' %></td>
+                <% end %>
+              </tr>
+              <tr>
+                <td><strong>Key Features</strong></td>
+                <% @comparison_products.each do |product| %>
+                  <td>
+                    <% if product.features.present? %>
+                      <ul class="list-unstyled mb-0 small">
+                        <% product.features_list.first(5).each do |feature| %>
+                          <li>&#10003; <%= feature %></li>
+                        <% end %>
+                        <% if product.features_list.length > 5 %>
+                          <li class="text-muted">... and <%= product.features_list.length - 5 %> more</li>
+                        <% end %>
+                      </ul>
+                    <% else %>
+                      <span class="text-muted">-</span>
+                    <% end %>
+                  </td>
+                <% end %>
+              </tr>
+              <tr>
+                <td><strong>Pros</strong></td>
+                <% @comparison_products.each do |product| %>
+                  <td>
+                    <% if product.pros.present? %>
+                      <ul class="list-unstyled mb-0 small text-success">
+                        <% product.pros_list.first(3).each do |pro| %>
+                          <li>+ <%= pro %></li>
+                        <% end %>
+                      </ul>
+                    <% else %>
+                      <span class="text-muted">-</span>
+                    <% end %>
+                  </td>
+                <% end %>
+              </tr>
+              <tr>
+                <td><strong>Cons</strong></td>
+                <% @comparison_products.each do |product| %>
+                  <td>
+                    <% if product.cons.present? %>
+                      <ul class="list-unstyled mb-0 small text-danger">
+                        <% product.cons_list.first(3).each do |con| %>
+                          <li>- <%= con %></li>
+                        <% end %>
+                      </ul>
+                    <% else %>
+                      <span class="text-muted">-</span>
+                    <% end %>
+                  </td>
+                <% end %>
+              </tr>
+              <tr>
+                <td><strong>Website</strong></td>
+                <% @comparison_products.each do |product| %>
+                  <td class="text-center">
+                    <% if product.website_url.present? %>
+                      <%= link_to 'Visit', product.website_url, class: 'btn btn-sm btn-primary', target: '_blank', rel: 'noopener' %>
+                    <% else %>
+                      <span class="text-muted">-</span>
+                    <% end %>
+                  </td>
+                <% end %>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  <% else %>
+    <div class="alert alert-info">
+      <h4>No products selected for comparison</h4>
+      <p>Select at least 2 products from the list below to compare them.</p>
+    </div>
+  <% end %>
+
+  <!-- Add more products -->
+  <div class="card">
+    <div class="card-header">
+      <h5 class="mb-0">Add Products to Compare</h5>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <% @saas_products.each do |product| %>
+          <div class="col-md-3 mb-3">
+            <div class="card h-100">
+              <div class="card-body text-center">
+                <h6><%= product.name %></h6>
+                <span class="badge badge-secondary"><%= product.category %></span>
+                <p class="small mt-2"><%= product.price_display %></p>
+                <button type="button" class="btn btn-sm btn-outline-primary add-compare"
+                        data-product-id="<%= product.id %>">
+                  Add to Compare
+                </button>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <% if @saas_products.empty? %>
+        <p class="text-muted text-center">No more products available to compare.</p>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var currentIds = '<%= @product_ids.join(",") %>'.split(',').filter(function(id) { return id !== ''; });
+
+  document.querySelectorAll('.add-compare').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var productId = this.dataset.productId;
+      currentIds.push(productId);
+      window.location.href = '/saas_products/compare?ids=' + currentIds.join(',');
+    });
+  });
+
+  document.querySelectorAll('.remove-compare').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var productId = this.dataset.productId;
+      currentIds = currentIds.filter(function(id) { return id !== productId; });
+      window.location.href = '/saas_products/compare?ids=' + currentIds.join(',');
+    });
+  });
+});
+</script>

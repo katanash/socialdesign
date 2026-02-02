@@ -1,0 +1,121 @@
+<div class="container mt-4">
+  <div class="row mb-4">
+    <div class="col-md-8">
+      <h1>SaaS Products</h1>
+      <p class="text-muted">Compare and find the best SaaS tools for your business</p>
+    </div>
+    <div class="col-md-4 text-right">
+      <%= link_to 'Compare Selected', compare_saas_products_path, class: 'btn btn-primary', id: 'compare-btn', style: 'display:none;' %>
+      <%= link_to 'Add New Product', new_saas_product_path, class: 'btn btn-success' %>
+    </div>
+  </div>
+
+  <!-- Filters -->
+  <div class="card mb-4">
+    <div class="card-body">
+      <%= form_tag saas_products_path, method: :get, class: 'd-flex flex-wrap align-items-center' do %>
+        <div class="form-group mr-3 mb-2">
+          <label class="mr-2">Category:</label>
+          <%= select_tag :category,
+              options_for_select([['All Categories', '']] + @categories.map { |c| [c, c] }, params[:category]),
+              class: 'form-control', onchange: 'this.form.submit()' %>
+        </div>
+        <div class="form-group mr-3 mb-2">
+          <label class="mr-2">Sort by:</label>
+          <%= select_tag :sort,
+              options_for_select([
+                ['Rating (High to Low)', 'rating'],
+                ['Price (Low to High)', 'price_asc'],
+                ['Price (High to Low)', 'price_desc'],
+                ['Name', 'name']
+              ], params[:sort]),
+              class: 'form-control', onchange: 'this.form.submit()' %>
+        </div>
+        <div class="form-check mb-2">
+          <%= check_box_tag :free_plan, 'true', params[:free_plan] == 'true',
+              class: 'form-check-input', onchange: 'this.form.submit()' %>
+          <label class="form-check-label">Free Plan Only</label>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- Product List -->
+  <div class="row">
+    <% @saas_products.each do |product| %>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input compare-checkbox"
+                     data-product-id="<%= product.id %>"
+                     id="compare-<%= product.id %>">
+              <label class="form-check-label" for="compare-<%= product.id %>">Compare</label>
+            </div>
+            <% if product.rating.present? %>
+              <span class="badge badge-primary"><%= product.rating %> / 5</span>
+            <% end %>
+          </div>
+          <div class="card-body">
+            <div class="text-center mb-3">
+              <% if product.logo_url.present? %>
+                <img src="<%= product.logo_url %>" alt="<%= product.name %>" style="max-height: 60px; max-width: 100%;">
+              <% else %>
+                <div class="bg-light p-3 rounded">
+                  <h4 class="mb-0"><%= product.name.first(2).upcase %></h4>
+                </div>
+              <% end %>
+            </div>
+            <h5 class="card-title"><%= product.name %></h5>
+            <p class="text-muted small mb-2">
+              <span class="badge badge-secondary"><%= product.category %></span>
+            </p>
+            <p class="card-text"><%= truncate(product.description, length: 100) %></p>
+            <p class="font-weight-bold text-success"><%= product.price_display %></p>
+            <% if product.free_plan? %>
+              <span class="badge badge-success">Free Plan</span>
+            <% end %>
+            <% if product.trial_days.present? && product.trial_days > 0 %>
+              <span class="badge badge-info"><%= product.trial_days %> days trial</span>
+            <% end %>
+          </div>
+          <div class="card-footer">
+            <%= link_to 'Details', product, class: 'btn btn-outline-primary btn-sm' %>
+            <%= link_to 'Edit', edit_saas_product_path(product), class: 'btn btn-outline-secondary btn-sm' %>
+            <%= link_to 'Delete', product, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger btn-sm' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <% if @saas_products.empty? %>
+    <div class="alert alert-info text-center">
+      <h4>No SaaS products found</h4>
+      <p>Try adjusting your filters or <%= link_to 'add a new product', new_saas_product_path %>.</p>
+    </div>
+  <% end %>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var checkboxes = document.querySelectorAll('.compare-checkbox');
+  var compareBtn = document.getElementById('compare-btn');
+
+  function updateCompareButton() {
+    var selected = document.querySelectorAll('.compare-checkbox:checked');
+    var ids = Array.from(selected).map(function(cb) { return cb.dataset.productId; });
+
+    if (ids.length >= 2) {
+      compareBtn.style.display = 'inline-block';
+      compareBtn.href = '/saas_products/compare?ids=' + ids.join(',');
+    } else {
+      compareBtn.style.display = 'none';
+    }
+  }
+
+  checkboxes.forEach(function(checkbox) {
+    checkbox.addEventListener('change', updateCompareButton);
+  });
+});
+</script>
