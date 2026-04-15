@@ -30,5 +30,22 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 public/uploads
-public/uploads
-public/uploads
+
+# Ignore generated binstubs (keep only Rails defaults)
+/bin/bootsnap
+/bin/byebug
+/bin/chromedriver-helper
+/bin/chromedriver-update
+/bin/lessc
+/bin/listen
+/bin/nokogiri
+/bin/puma
+/bin/pumactl
+/bin/racc
+/bin/rackup
+/bin/sass
+/bin/sass-convert
+/bin/scss
+/bin/sprockets
+/bin/thor
+/bin/tilt
